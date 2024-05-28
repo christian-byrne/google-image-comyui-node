@@ -26,14 +26,14 @@
 > <details>
 > <summary> Expand Picture </summary>
 > 
-> ![alt text](wiki/demo/img2txt2color2img.png)
+> ![alt text](wiki/demo/img2txt2color2img-2.png)
 >
 > </details>
 > 
 > <details>
 > <summary> Expand Picture </summary>
 >
-> ![alt text](wiki/demo/img2txt2color2img-2.png)
+> ![alt text](wiki/demo/img2txt2color2img.png)
 >
 > </details>
 

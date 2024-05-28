@@ -127,7 +127,6 @@ class ImageScraperNode:
                 break
             except Exception as e:
                 # some will fail
-                #print(f"Failed to load image {i + 1} of {len(results)}\nError: {e}")
                 i += 1
 
         # Convert Path to str
