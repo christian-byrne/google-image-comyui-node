@@ -10,7 +10,7 @@
 # Workflow Examples
 
 
-## Goole Image → Text (Caption) → Image
+## Goolge Image → Text (Caption) → Image
 
 >
 > <details>
@@ -20,7 +20,7 @@
 >
 > </details>
 
-## Goole Image → Text (Caption) → Color → Image
+## Google Image → Text (Caption) → Color → Image
 
 >
 > <details>
@@ -37,7 +37,6 @@
 >
 > </details>
 
-&nbsp; 
 
 # Requirements
 
