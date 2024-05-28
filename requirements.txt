@@ -1,0 +1,6 @@
+duckduckgo_search==5.2.1
+fastcore==1.5.29
+fastdownload==0.0.7
+# numpy==1.24.2
+# Pillow==10.3.0
+# TikTokApi==6.3.0
