@@ -21,8 +21,8 @@ function addStyleElement() {
     }
     #${nodeConfig.mainContainerId}::-webkit-scrollbar, #${nodeConfig.getResponseId}::-webkit-scrollbar
     {
-      width: 4px;
-      height: 4px;
+      width: 5px;
+      height: 5px;
       background-color: #F5F5F5;
     }
     #${nodeConfig.mainContainerId}::-webkit-scrollbar-thumb, #${nodeConfig.getResponseId}::-webkit-scrollbar-thumb
@@ -38,7 +38,7 @@ function addStyleElement() {
 }
 export function appendGETresponse(node, liteGraph, data) {
     return __awaiter(this, void 0, void 0, function* () {
-        // Check if GET response is already appended
+        // Check if GET response text is already appended
         let getResponseEl = document.querySelector(`#${nodeConfig.getResponseId}`);
         if (getResponseEl) {
             getResponseEl.innerText = JSON.stringify(JSON.parse(data.text.join("")), null, 4);
@@ -59,7 +59,7 @@ export function appendGETresponse(node, liteGraph, data) {
             node.size[1] = Math.ceil(currentSize[1] + computedHeight + getResponsePadding());
             liteGraph.setDirtyCanvas(true, false);
             mainContainer.appendChild(getResponseEl);
-            // ??
+            // Fill available on resize
             let startSize = node.size;
             const handleInitialResize = (graphChangeEvent) => {
                 if (graphChangeEvent === null || graphChangeEvent === void 0 ? void 0 : graphChangeEvent.detail) {

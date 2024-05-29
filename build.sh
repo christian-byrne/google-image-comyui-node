@@ -4,7 +4,7 @@ tsc && tsc-alias
 
 REPLACE="../../../web/"
 WITH="../../"
-NODE_NAME="comfy-tiktok"
+NODE_NAME="google-image-comfyui-node"
 SOURCE_DIR="./web"
 
 # Replace all occurences of ../../../web with ../../ in .js files in the SOURCE_DIR

@@ -19,8 +19,8 @@ function addStyleElement() {
     }
     #${nodeConfig.mainContainerId}::-webkit-scrollbar, #${nodeConfig.getResponseId}::-webkit-scrollbar
     {
-      width: 4px;
-      height: 4px;
+      width: 5px;
+      height: 5px;
       background-color: #F5F5F5;
     }
     #${nodeConfig.mainContainerId}::-webkit-scrollbar-thumb, #${nodeConfig.getResponseId}::-webkit-scrollbar-thumb
@@ -40,7 +40,7 @@ export async function appendGETresponse(
   liteGraph: LGraph,
   data: APIOutputRecord
 ) {
-  // Check if GET response is already appended
+  // Check if GET response text is already appended
   let getResponseEl: HTMLPreElement = document.querySelector(
     `#${nodeConfig.getResponseId}`
   );
@@ -75,7 +75,7 @@ export async function appendGETresponse(
     liteGraph.setDirtyCanvas(true, false);
     mainContainer.appendChild(getResponseEl);
 
-    // ??
+    // Fill available on resize
     let startSize = node.size;
     const handleInitialResize = (graphChangeEvent) => {
       if (graphChangeEvent?.detail) {

@@ -33,6 +33,8 @@ export async function addProgressBar(graph: LGraph) {
   });
   progressBarContainerEl.prepend(progressBarEl);
   mainConter.prepend(progressBarContainerEl);
-  componentHandler.upgradeElement(progressBarEl);
+  if (componentHandler?.upgradeElement) {
+    componentHandler.upgradeElement(progressBarEl);
+  }
   graph.setDirtyCanvas(true, false);
 }

@@ -34,7 +34,9 @@ export function addProgressBar(graph) {
         });
         progressBarContainerEl.prepend(progressBarEl);
         mainConter.prepend(progressBarContainerEl);
-        componentHandler.upgradeElement(progressBarEl);
+        if (componentHandler === null || componentHandler === void 0 ? void 0 : componentHandler.upgradeElement) {
+            componentHandler.upgradeElement(progressBarEl);
+        }
         graph.setDirtyCanvas(true, false);
     });
 }
