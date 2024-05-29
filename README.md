@@ -53,7 +53,3 @@
 
 
 --------------
-
-
-
-This actually uses DuckDuckGo...
