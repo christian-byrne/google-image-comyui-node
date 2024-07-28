@@ -1,0 +1,14 @@
+[project]
+name = "google-image-comfyui-node"
+description = "Provide a prompt and get google image search results"
+version = "1.0.0"
+license = "LICENSE"
+
+[project.urls]
+Repository = "https://github.com/christian-byrne/google-image-comyui-node"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "christian-byrne"
+DisplayName = "google-image-comfyui-node"
+Icon = ""

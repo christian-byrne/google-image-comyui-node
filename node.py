@@ -1,19 +1,16 @@
 import torch
-import os
-import sys
 import json
 import numpy as np
 from pathlib import Path
 from PIL import Image, ImageOps
 import random
 
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from .web_scrape.ddg import DuckDuckGoImageScraper
+from .image_search.ddg import DuckDuckGoImageScraper
 
 from typing import Union, Tuple
 
 
-class ImageScraperNode:
+class ImageSearchNode:
     OPTIONS_ = {
         "safesearch": (["on", "moderate", "off", "Random"], {"default": "off"}),
         "size": (
@@ -97,7 +94,7 @@ class ImageScraperNode:
     OUTPUT_NODE = True
     RETURN_TYPES = ("IMAGE", "MASK")
     RETURN_NAMES = ("image", "mask")
-    CATEGORY = "Web Scraping"
+    CATEGORY = "data"
 
     def main(
         self,
@@ -126,44 +123,41 @@ class ImageScraperNode:
                 image, mask = self.load_image(results[i]["download_path"])
                 break
             except Exception as e:
-                # some will fail
+                # it is expected that some will fail
                 i += 1
 
-        # Convert Path to str
         for result in results:
             result["download_path"] = str(result["download_path"])
 
         return {"ui": {"text": json.dumps(results[0])}, "result": (image, mask)}
 
     def load_image(self, img: Union[Path, str]) -> Tuple[torch.Tensor, torch.Tensor]:
-        """This code is taken from the LoadImage node code in ComfyUI. Maybe it's better to call that function directly?"""
+        """This function was taken from comfyanonymous/ComfyUI
+
+        Repository: https://github.com/comfyanonymous/ComfyUI
+        License: GPL-3.0 License
+        Original file: nodes.py#L1473
+        Commit: 6225a78
+
+        """
         img = Image.open(img)
 
-        # If the image has exif data, rotate it to the correct orientation and remove the exif data.
         img_raw = ImageOps.exif_transpose(img)
 
-        # If in 32-bit mode, normalize the image appropriately.
         if img_raw.mode == "I":
             img_raw = img.point(lambda i: i * (1 / 255))
 
-        # If image is rgba, create mask.
         if "A" in img_raw.getbands():
             mask = np.array(img_raw.getchannel("A")).astype(np.float32) / 255.0
             mask = 1.0 - torch.from_numpy(mask)
         else:
-            # otherwise create a blank mask.
             mask = torch.zeros(
                 (img_raw.height, img_raw.width), dtype=torch.float32, device="cpu"
             )
-        mask = mask.unsqueeze(0)  # Add a batch dimension to mask
+        mask = mask.unsqueeze(0)
 
-        # Convert the image to RGB.
         rgb_image = img_raw.convert("RGB")
-        # Normalize the image's rgb values to {x | x ∈ float32, 0 <= x <= 1}
         rgb_image = np.array(rgb_image).astype(np.float32) / 255.0
-        # Convert the image to a tensor (torch.from_numpy gives a tensor with the format of [H, W, C])
-        rgb_image = torch.from_numpy(rgb_image)[
-            None,
-        ]  # Add a batch dimension, new format is [B, H, W, C]
+        rgb_image = torch.from_numpy(rgb_image)[None,]
 
         return rgb_image, mask

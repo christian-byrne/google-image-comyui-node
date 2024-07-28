@@ -17,7 +17,7 @@ export function addMainContainer(node) {
         if (node.addDOMWidget !== undefined) {
             node.addDOMWidget(nodeConfig.mainContainerId, "customtext", container, {
                 getValue: () => "",
-                height: 50,
+                height: 150,
                 width: 100,
             });
         }
